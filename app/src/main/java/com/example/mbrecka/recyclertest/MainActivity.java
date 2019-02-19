@@ -51,41 +51,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this){
-            @Override
-            public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec) {
-                Log.d("matej", "LAYOUTMANAGER onMeasure() called with: recycler = [" + recycler + "], state = [" + state + "], widthSpec = [" + widthSpec + "], heightSpec = [" + heightSpec + "]");
-                super.onMeasure(recycler, state, widthSpec, heightSpec);
-            }
-
-        };
-
-        recyclerView.setLayoutManager(linearLayoutManager);
-//        recyclerView.setLayoutFrozen(true);
-//        recyclerView.setScrollContainer(false);
-//        recyclerView.setNestedScrollingEnabled(false);
-//        recyclerView.setClickable(false);
-//        recyclerView.setFocusable(false);
-//        recyclerView.setFocusedByDefault(false);
-//        recyclerView.setAdapter(new MyItemRecyclerViewAdapter(new ArrayList<DummyContent.DummyItem>(), null));
-        final MyItemRecyclerViewAdapter adapter = new MyItemRecyclerViewAdapter(DummyContent.ITEMS, null);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setEnabled(false);
-        recyclerView.item
-
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                adapter.onSwipe(viewHolder);
-            }
-        }).attachToRecyclerView(recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS));
 
     }
 

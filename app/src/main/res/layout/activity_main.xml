@@ -13,6 +13,12 @@
         android:clickable="false"
         android:focusable="false">
 
+        <!--<View-->
+            <!--android:id="@+id/mapView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:clickable="true"-->
+            <!--android:focusable="true" />-->
 
     </FrameLayout>
 
@@ -29,32 +35,10 @@
             android:clickable="true"
             android:focusable="true" />
 
-        <!--<View-->
-        <!--android:id="@+id/mapView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:clickable="true"-->
-        <!--android:focusable="true" />-->
-
-        <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/recycler"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:clickable="false"-->
-        <!--android:focusable="false" />-->
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-
-            <com.example.mbrecka.recyclertest.FooRecyclerView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </RelativeLayout>
 
     </FrameLayout>
 
