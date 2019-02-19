@@ -1,11 +1,14 @@
 package com.example.mbrecka.recyclertest;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.util.DiffUtil;
+import android.support.v7.util.ListUpdateCallback;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -49,19 +52,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this)
-//                                      {
-//            @Override
-//            public boolean canScrollHorizontally() {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean canScrollVertically() {
-//                return false;
-//            }
-//        }
-        );
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this){
+            @Override
+            public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec) {
+                Log.d("matej", "LAYOUTMANAGER onMeasure() called with: recycler = [" + recycler + "], state = [" + state + "], widthSpec = [" + widthSpec + "], heightSpec = [" + heightSpec + "]");
+                super.onMeasure(recycler, state, widthSpec, heightSpec);
+            }
+
+        };
+
+        recyclerView.setLayoutManager(linearLayoutManager);
 //        recyclerView.setLayoutFrozen(true);
 //        recyclerView.setScrollContainer(false);
 //        recyclerView.setNestedScrollingEnabled(false);
@@ -71,25 +71,21 @@ public class MainActivity extends AppCompatActivity {
 //        recyclerView.setAdapter(new MyItemRecyclerViewAdapter(new ArrayList<DummyContent.DummyItem>(), null));
         final MyItemRecyclerViewAdapter adapter = new MyItemRecyclerViewAdapter(DummyContent.ITEMS, null);
         recyclerView.setAdapter(adapter);
-//        recyclerView.setFocusableInTouchMode(false);
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("matej", "onClick() called with: v = [" + v + "]");
-            }
-        });
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setEnabled(false);
+        recyclerView.item
 
-//        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-//            @Override
-//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-//                adapter.onSwipe(viewHolder);
-//            }
-//        }).attachToRecyclerView(recyclerView);
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+                adapter.onSwipe(viewHolder);
+            }
+        }).attachToRecyclerView(recyclerView);
 
     }
 

@@ -13,12 +13,6 @@
         android:clickable="false"
         android:focusable="false">
 
-        <View
-            android:id="@+id/mapView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true" />
 
     </FrameLayout>
 
@@ -26,8 +20,14 @@
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="false"
-        android:focusable="false">
+        >
+
+        <View
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true" />
 
         <!--<View-->
         <!--android:id="@+id/mapView"-->
@@ -43,10 +43,18 @@
         <!--android:clickable="false"-->
         <!--android:focusable="false" />-->
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
             <com.example.mbrecka.recyclertest.FooRecyclerView
                 android:id="@+id/recycler"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+        </RelativeLayout>
 
     </FrameLayout>
 
